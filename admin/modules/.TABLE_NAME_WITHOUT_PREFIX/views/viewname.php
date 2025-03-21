@@ -1,1 +1,0 @@
-<!-- YOUR CUSTOM VIEW HERE - Get data from $viewData in the viewnameController -->
