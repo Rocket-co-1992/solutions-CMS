@@ -87,7 +87,7 @@ class Widget
     public function getMainFile($isImg = true)
     {
         $type = $isImg ? 'image' : 'other';
-        $stmt = $this->pms_db->prepare('SELECT * FROM pm_widget_file
+        $stmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_widget_file
             WHERE id_item = :widget_id AND checked = 1 AND lang = :lang AND `type` = :type ORDER BY `rank` LIMIT 1');
         if($stmt->execute(['widget_id' => $this->id, 'lang' => $this->lang, 'type' => $type]) !== false){
             $file = $stmt->fetch();

@@ -118,7 +118,7 @@ class MailUtils
      */
     public static function getMail($db, $name, $vars = array())
     {
-        $result = $db->query('SELECT * FROM pm_email_content WHERE name = ' . $db->quote($name) . ' AND lang = ' . PMS_LANG_ID);
+        $result = $db->query('SELECT * FROM solutionsCMS_email_content WHERE name = ' . $db->quote($name) . ' AND lang = ' . PMS_LANG_ID);
         if ($result !== false && DbUtils::lastRowCount($db) > 0) {
             $row = $result->fetch();
             $content = $row['content'];

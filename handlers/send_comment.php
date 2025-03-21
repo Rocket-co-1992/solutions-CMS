@@ -36,7 +36,7 @@ if($rating !== false && (!is_numeric($rating) || $rating < 0 || $rating > 5)) $r
 if($email == '' || !preg_match('/^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$/i', $email)) $response['notices']['email'] = $siteContext->texts['INVALID_EMAIL'];
 
 if(!isset($_COOKIE['COMMENT_' . $item_type . '_' . $item_id])){
-    $result_rating = $this->pms_db->query('SELECT * FROM pm_comment WHERE item_type = ' . $this->pms_db->quote($item_type) . ' AND id_item = ' . $this->pms_db->quote($item_id) . ' AND rating > 0 AND rating <= 5 AND (UPPER(email) = ' . $this->pms_db->quote(mb_strtoupper($email, 'UTF-8')) . ' OR ip = ' . $this->pms_db->quote($_SERVER['REMOTE_ADDR']) . ')');
+    $result_rating = $this->pms_db->query('SELECT * FROM solutionsCMS_comment WHERE item_type = ' . $this->pms_db->quote($item_type) . ' AND id_item = ' . $this->pms_db->quote($item_id) . ' AND rating > 0 AND rating <= 5 AND (UPPER(email) = ' . $this->pms_db->quote(mb_strtoupper($email, 'UTF-8')) . ' OR ip = ' . $this->pms_db->quote($_SERVER['REMOTE_ADDR']) . ')');
     if($result_rating === false || $this->pms_db->last_row_count() > 0)
         $rating = null;
 }else
@@ -56,7 +56,7 @@ if(is_numeric($item_id) && count($response['notices']) == 0){
     
     if($rating !== false) $data['rating'] = $rating;
     
-    $result_insert = DbUtils::dBprepareInsert($this->pms_db, 'pm_comment', $data);
+    $result_insert = DbUtils::dBprepareInsert($this->pms_db, 'solutionsCMS_comment', $data);
     
     if($result_insert->execute() !== false){
         if($rating !== false && $rating > 0 && $rating <= 5) setcookie('COMMENT_' . $item_type . '_' . $item_id, 1, time() + 2592000);

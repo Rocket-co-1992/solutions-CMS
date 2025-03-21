@@ -49,7 +49,7 @@ class Page extends Content
      */
     public function loadPage($alias, $home = false)
     {
-        $query = 'SELECT * FROM pm_page WHERE lang = :lang AND checked = 1';
+        $query = 'SELECT * FROM solutionsCMS_page WHERE lang = :lang AND checked = 1';
         $params = ['lang' => PMS_LANG_ID];
         if ($home) {
             $query .= ' AND home = 1';
@@ -81,7 +81,7 @@ class Page extends Content
      */
     private function loadPageFiles()
     {
-        $stmt = $this->pms_db->prepare('SELECT * FROM pm_page_file WHERE id_item = :page_id AND checked = 1 AND lang = :lang AND `type` = \'image\' ORDER BY `rank`');
+        $stmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_page_file WHERE id_item = :page_id AND checked = 1 AND lang = :lang AND `type` = \'image\' ORDER BY `rank`');
         $stmt->execute(['page_id' => $this->id, 'lang' => $this->lang]);
         $this->images = $stmt->fetchAll();
     }
@@ -167,8 +167,8 @@ class Page extends Content
         $slides = [];
 
         $result_slide = $this->pms_db->prepare('SELECT s.id AS slide_id, s.legend, f.id AS file_id, f.file
-                                                FROM pm_slide s
-                                                LEFT JOIN pm_slide_file f ON s.id = f.id_item AND f.checked = 1 AND f.lang = :lang_f AND f.type = \'image\'
+                                                FROM solutionsCMS_slide s
+                                                LEFT JOIN solutionsCMS_slide_file f ON s.id = f.id_item AND f.checked = 1 AND f.lang = :lang_f AND f.type = \'image\'
                                                 WHERE s.id_page = :id_page AND s.checked = 1 AND s.lang = :lang_s
                                                 ORDER BY s.rank, f.rank');
 
@@ -197,7 +197,7 @@ class Page extends Content
      */
     public function getPopup()
     {
-        $result_popup = $this->pms_db->prepare('SELECT * FROM pm_popup
+        $result_popup = $this->pms_db->prepare('SELECT * FROM solutionsCMS_popup
                                                 WHERE lang = :lang
                                                     AND checked = 1 
                                                     AND (publish_date IS NULL || publish_date <= ' . time() . ')

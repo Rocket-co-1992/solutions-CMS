@@ -30,7 +30,7 @@ class PageService
         $pages = [];
         $parents = [];
 
-        $stmt = $this->pms_db->prepare('SELECT * FROM pm_page
+        $stmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_page
                                         WHERE (checked = 1 OR checked = 0) 
                                             AND lang = :lang 
                                             AND (show_langs IS NULL OR show_langs = \'\' OR show_langs REGEXP \'(^|,):lang(,|$)\') 
@@ -40,7 +40,7 @@ class PageService
 
         if ($stmt !== false) {
 
-            $pageFileStmt = $this->pms_db->prepare('SELECT * FROM pm_page_file
+            $pageFileStmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_page_file
                                                     WHERE id_item = :page_id
                                                         AND checked = 1 AND lang = :lang
                                                         AND `type` = \'image\' 
@@ -48,7 +48,7 @@ class PageService
                                                     ORDER BY `rank`');
             
             $pageCommentStmt = $this->pms_db->prepare('SELECT * 
-                                                       FROM pm_comment 
+                                                       FROM solutionsCMS_comment 
                                                        WHERE id_item = :page_id 
                                                          AND item_type = \'page\' 
                                                          AND checked = 1 

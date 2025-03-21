@@ -112,7 +112,7 @@ class SiteContext
      */
     private function loadTexts()
     {
-        $stmt = $this->pms_db->query('SELECT * FROM pm_text WHERE lang = ' . PMS_LANG_ID);
+        $stmt = $this->pms_db->query('SELECT * FROM solutionsCMS_text WHERE lang = ' . PMS_LANG_ID);
         $this->texts = [];
         foreach ($stmt as $row) {
             $this->texts[$row['name']] = $row['value'];

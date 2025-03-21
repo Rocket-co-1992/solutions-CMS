@@ -1,6 +1,6 @@
-# Pandao CMS
+# Solutions CMS
 
-**Pandao CMS** is a flexible and modular content management system designed for web agencies and developers. It allows for easy site development, offering a balance between simplicity for end-users and deep customization for developers. Pandao CMS is available on Codecanyon and is used both by Pandao Web Agency and external developers to create highly optimized and customized websites.
+**Solutions CMS** is a flexible and modular content management system designed for web agencies and developers. It allows for easy site development, offering a balance between simplicity for end-users and deep customization for developers. Solutions CMS is available on Codecanyon and is used both by Pandao Web Agency and external developers to create highly optimized and customized websites.
 
 Documentation: https://cms.pandao.eu/doc/
 
@@ -210,7 +210,7 @@ https://www.yourwebsite.com/admin
 
 ## License
 
-Pandao CMS is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
+Solutions CMS is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
 
 ## Contact
 

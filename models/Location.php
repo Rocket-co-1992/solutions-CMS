@@ -38,7 +38,7 @@ class Location
     public static function getLocations($db, $page_id)
     {
         $locations = [];
-        $result_location = $db->query("SELECT * FROM pm_location WHERE checked = 1 AND pages REGEXP '(^|,)" . $page_id . "(,|$)'");
+        $result_location = $db->query("SELECT * FROM solutionsCMS_location WHERE checked = 1 AND pages REGEXP '(^|,)" . $page_id . "(,|$)'");
 
         if ($result_location !== false) {
             foreach ($result_location as $row) {

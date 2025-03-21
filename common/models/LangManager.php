@@ -42,7 +42,7 @@ class LangManager
     private function handleLanguageSettings()
     {
         if($this->pms_db !== false){
-            $result_lang = $this->pms_db->query('SELECT l.id AS lang_id, lf.id AS file_id, title, tag, file, locale, rtl, main FROM pm_lang as l, pm_lang_file as lf WHERE id_item = l.id AND l.checked = 1 AND file != \'\' ORDER BY l.rank');
+            $result_lang = $this->pms_db->query('SELECT l.id AS lang_id, lf.id AS file_id, title, tag, file, locale, rtl, main FROM solutionsCMS_lang as l, solutionsCMS_lang_file as lf WHERE id_item = l.id AND l.checked = 1 AND file != \'\' ORDER BY l.rank');
             if ($result_lang !== false) {
                 foreach ($result_lang as $i => $row) {
                     $lang_tag = $row['tag'];
@@ -75,7 +75,7 @@ class LangManager
     public function getLanguagesWithImages()
     {
         $languages = [];
-        $query_lang = "SELECT id, title, tag FROM pm_lang WHERE checked = 1 ORDER BY CASE main WHEN 1 THEN 0 ELSE 1 END, `rank`";
+        $query_lang = "SELECT id, title, tag FROM solutionsCMS_lang WHERE checked = 1 ORDER BY CASE main WHEN 1 THEN 0 ELSE 1 END, `rank`";
         $result_lang = $this->pms_db->query($query_lang);
 
         foreach ($result_lang as $i => $row_lang) {
@@ -83,7 +83,7 @@ class LangManager
             $title_lang = $row_lang['title'];
             $lang_tag = $row_lang['tag'];
             
-            $query_img_lang = "SELECT * FROM pm_lang_file WHERE id_item = :id_lang AND `type` = 'image' AND file != '' ORDER BY `rank` LIMIT 1";
+            $query_img_lang = "SELECT * FROM solutionsCMS_lang_file WHERE id_item = :id_lang AND `type` = 'image' AND file != '' ORDER BY `rank` LIMIT 1";
             $result_img_lang = $this->pms_db->prepare($query_img_lang);
             $result_img_lang->execute(['id_lang' => $id_lang]);
 

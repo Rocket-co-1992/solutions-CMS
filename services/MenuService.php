@@ -29,7 +29,7 @@ class MenuService
             'footer' => []
         ];
 
-        $query = 'SELECT * FROM pm_menu WHERE checked = 1 AND lang = :lang ORDER BY `rank`';
+        $query = 'SELECT * FROM solutionsCMS_menu WHERE checked = 1 AND lang = :lang ORDER BY `rank`';
         $stmt = $this->pms_db->prepare($query);
         $stmt->execute(['lang' => PMS_LANG_ID]);
     
@@ -90,7 +90,7 @@ class MenuService
      */
     public function getAllSocials()
     {
-        $stmt = $this->pms_db->query('SELECT * FROM pm_social WHERE checked = 1 ORDER BY `rank`');
+        $stmt = $this->pms_db->query('SELECT * FROM solutionsCMS_social WHERE checked = 1 ORDER BY `rank`');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -103,7 +103,7 @@ class MenuService
      */
     public function getMenuItems($menuType)
     {
-        $stmt = $this->pms_db->prepare('SELECT * FROM pm_menu WHERE checked = 1 AND lang = :lang ORDER BY `rank`');
+        $stmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_menu WHERE checked = 1 AND lang = :lang ORDER BY `rank`');
         $stmt->execute(['lang' => PMS_LANG_ID]);
         $navItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

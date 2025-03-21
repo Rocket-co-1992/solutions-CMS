@@ -68,7 +68,7 @@ class ContactController extends PageController
                 'edit_date' => null
             ];
 
-            $result_msg = DbUtils::dbPrepareInsert($this->pms_db, 'pm_message', $data);
+            $result_msg = DbUtils::dbPrepareInsert($this->pms_db, 'solutionsCMS_message', $data);
             if ($result_msg->execute()) {
 
                 // Send confirmation email

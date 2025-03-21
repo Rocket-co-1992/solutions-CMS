@@ -10,30 +10,30 @@
 -- Installation date (timestamp):   INSTALL_DATE
 
 -- **** Tables ****
--- pm_user
--- pm_lang
--- pm_lang_file
--- pm_page
--- pm_page_file
--- pm_menu
--- pm_media
--- pm_media_file
--- pm_text
--- pm_widget
--- pm_widget_file
--- pm_article
--- pm_article_file
--- pm_comment
--- pm_tag
--- pm_slide
--- pm_slide_file
--- pm_location
--- pm_message
--- pm_currency
--- pm_country
--- pm_social
--- pm_email_content
--- pm_popup
+-- solutionsCMS_user
+-- solutionsCMS_lang
+-- solutionsCMS_lang_file
+-- solutionsCMS_page
+-- solutionsCMS_page_file
+-- solutionsCMS_menu
+-- solutionsCMS_media
+-- solutionsCMS_media_file
+-- solutionsCMS_text
+-- solutionsCMS_widget
+-- solutionsCMS_widget_file
+-- solutionsCMS_article
+-- solutionsCMS_article_file
+-- solutionsCMS_comment
+-- solutionsCMS_tag
+-- solutionsCMS_slide
+-- solutionsCMS_slide_file
+-- solutionsCMS_location
+-- solutionsCMS_message
+-- solutionsCMS_currency
+-- solutionsCMS_country
+-- solutionsCMS_social
+-- solutionsCMS_email_content
+-- solutionsCMS_popup
 
 -- **** Edit with the name of your database ****
 -- CREATE DATABASE IF NOT EXISTS `MY_DATABASE`;
@@ -42,9 +42,9 @@
 -- **** Uncomment the following line if you are allowed to create users ****
 -- GRANT SELECT, INSERT, UPDATE, DELETE ON `MY_DATABASE`.* TO `MY_DB_USER`@`localhost` IDENTIFIED BY 'MY_DB_PASS' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
 
--- ================= CREATION OF THE TABLE pm_user ===============
+-- ================= CREATION OF THE TABLE solutionsCMS_user ===============
 
-CREATE TABLE IF NOT EXISTS pm_user(
+CREATE TABLE IF NOT EXISTS solutionsCMS_user(
     `id` int NOT NULL AUTO_INCREMENT,
     `firstname` varchar(100),
     `lastname` varchar(100),
@@ -59,12 +59,12 @@ CREATE TABLE IF NOT EXISTS pm_user(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 -- **** Edit with the informations of the admin user ****
-INSERT INTO `pm_user` (`id`, `firstname`, `lastname`, `email`, `login`, `pass`, `type`, `add_date`, `edit_date`, `checked`) VALUES
+INSERT INTO `solutionsCMS_user` (`id`, `firstname`, `lastname`, `email`, `login`, `pass`, `type`, `add_date`, `edit_date`, `checked`) VALUES
 (1, 'Administrator', '', 'USER_EMAIL', 'USER_LOGIN', 'USER_PASS_HASH', 'administrator', INSTALL_DATE, INSTALL_DATE, 1);
 
--- ================= CREATION OF THE TABLE pm_lang ===============
+-- ================= CREATION OF THE TABLE solutionsCMS_lang ===============
 
-CREATE TABLE IF NOT EXISTS pm_lang(
+CREATE TABLE IF NOT EXISTS solutionsCMS_lang(
     `id` int NOT NULL AUTO_INCREMENT,
     `title` varchar(20),
     `locale` varchar(20),
@@ -77,16 +77,16 @@ CREATE TABLE IF NOT EXISTS pm_lang(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
--- Content OF THE TABLE pm_lang
+-- Content OF THE TABLE solutionsCMS_lang
 --
 
-INSERT INTO `pm_lang` (`id`, `title`, `locale`, `main`, `checked`, `rank`, `tag`, `rtl`) VALUES
+INSERT INTO `solutionsCMS_lang` (`id`, `title`, `locale`, `main`, `checked`, `rank`, `tag`, `rtl`) VALUES
 (1, 'Français', 'fr_FR', 0, 1, 2, 'fr', 0),
 (2, 'English', 'en_GB', 1, 1, 1, 'en', 0);
 
--- ============== CREATION OF THE TABLE pm_lang_file =============
+-- ============== CREATION OF THE TABLE solutionsCMS_lang_file =============
 
-CREATE TABLE IF NOT EXISTS pm_lang_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_lang_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `id_item` int NOT NULL,
     `home` int DEFAULT 0,
@@ -98,19 +98,19 @@ CREATE TABLE IF NOT EXISTS pm_lang_file (
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_lang_file ADD CONSTRAINT lang_file_fkey FOREIGN KEY (id_item) REFERENCES pm_lang(id) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_lang_file ADD CONSTRAINT lang_file_fkey FOREIGN KEY (id_item) REFERENCES solutionsCMS_lang(id) ON UPDATE NO ACTION ON DELETE CASCADE;
 
 --
--- Content OF THE TABLE pm_lang_file
+-- Content OF THE TABLE solutionsCMS_lang_file
 --
 
-INSERT INTO `pm_lang_file` (`id`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
+INSERT INTO `solutionsCMS_lang_file` (`id`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
 (1, 1, 0, 1, 2, 'fr.png', '', 'image'),
 (2, 2, 0, 1, 1, 'gb.png', '', 'image');
 
--- ================= CREATION OF THE TABLE pm_page ===============
+-- ================= CREATION OF THE TABLE solutionsCMS_page ===============
 
-CREATE TABLE IF NOT EXISTS pm_page (
+CREATE TABLE IF NOT EXISTS solutionsCMS_page (
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `name` varchar(50),
@@ -138,15 +138,15 @@ CREATE TABLE IF NOT EXISTS pm_page (
     PRIMARY KEY(id, lang)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_page ADD CONSTRAINT page_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_page ADD CONSTRAINT page_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_page
+-- Content OF THE TABLE solutionsCMS_page
 --
 
-INSERT INTO `pm_page` (`id`, `lang`, `name`, `title`, `subtitle`, `title_tag`, `alias`, `descr`, `robots`, `keywords`, `text`, `id_parent`, `page_model`, `article_model`, `home`, `checked`, `rank`, `add_date`, `edit_date`, `comment`, `rating`, `system`, `show_langs`, `hide_langs`) VALUES
+INSERT INTO `solutionsCMS_page` (`id`, `lang`, `name`, `title`, `subtitle`, `title_tag`, `alias`, `descr`, `robots`, `keywords`, `text`, `id_parent`, `page_model`, `article_model`, `home`, `checked`, `rank`, `add_date`, `edit_date`, `comment`, `rating`, `system`, `show_langs`, `hide_langs`) VALUES
 (1, 1, 'Accueil', 'Lorem ipsum dolor sit amet', 'Consectetur adipiscing elit', 'Accueil', '', '', 'index,follow', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum mi quis lacus iaculis, laoreet auctor augue sagittis. Pellentesque at dignissim ex, sit amet lobortis risus. In auctor dictum ligula a elementum. Nam porttitor quam sit amet ultrices sollicitudin. Morbi tortor lectus, laoreet a augue a, viverra sagittis erat. Maecenas suscipit felis turpis, et vestibulum tortor ultrices ac. Maecenas varius quis dui vitae malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et turpis porttitor, rutrum arcu a, molestie nulla. Vivamus semper nunc at viverra porttitor. Quisque tincidunt, nunc nec faucibus mattis, ligula magna pharetra dolor, maximus sodales mi augue vel mi. Vivamus quis placerat quam. Nulla vel massa eu felis dapibus maximus in eget risus. Aliquam erat volutpat. Maecenas sem neque, consequat sit amet nibh in, facilisis cursus ante.</p>', NULL, 'home', '', 1, 1, 1, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
-(1, 2, 'Home', 'Create and manage your own website', 'Pandao CMS', 'Pandao CMS web software to create and manage your own website', '', '', 'index,follow', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum mi quis lacus iaculis, laoreet auctor augue sagittis. Pellentesque at dignissim ex, sit amet lobortis risus. In auctor dictum ligula a elementum. Nam porttitor quam sit amet ultrices sollicitudin. Morbi tortor lectus, laoreet a augue a, viverra sagittis erat. Maecenas suscipit felis turpis, et vestibulum tortor ultrices ac. Maecenas varius quis dui vitae malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et turpis porttitor, rutrum arcu a, molestie nulla. Vivamus semper nunc at viverra porttitor. Quisque tincidunt, nunc nec faucibus mattis, ligula magna pharetra dolor, maximus sodales mi augue vel mi. Vivamus quis placerat quam. Nulla vel massa eu felis dapibus maximus in eget risus. Aliquam erat volutpat. Maecenas sem neque, consequat sit amet nibh in, facilisis cursus ante.</p>', NULL, 'home', '', 1, 1, 1, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
+(1, 2, 'Home', 'Create and manage your own website', 'Solutions CMS', 'Solutions CMS web software to create and manage your own website', '', '', 'index,follow', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum mi quis lacus iaculis, laoreet auctor augue sagittis. Pellentesque at dignissim ex, sit amet lobortis risus. In auctor dictum ligula a elementum. Nam porttitor quam sit amet ultrices sollicitudin. Morbi tortor lectus, laoreet a augue a, viverra sagittis erat. Maecenas suscipit felis turpis, et vestibulum tortor ultrices ac. Maecenas varius quis dui vitae malesuada. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec et turpis porttitor, rutrum arcu a, molestie nulla. Vivamus semper nunc at viverra porttitor. Quisque tincidunt, nunc nec faucibus mattis, ligula magna pharetra dolor, maximus sodales mi augue vel mi. Vivamus quis placerat quam. Nulla vel massa eu felis dapibus maximus in eget risus. Aliquam erat volutpat. Maecenas sem neque, consequat sit amet nibh in, facilisis cursus ante.</p>', NULL, 'home', '', 1, 1, 1, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
 (2, 1, 'Contact', 'Contact', '', 'Contact', 'contact', '', 'index,follow', '', '<h2 style=\"text-align: center;\">Restons en contact</h2>\r\n', NULL, 'contact', '', 0, 1, 4, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
 (2, 2, 'Contact', 'Contact', '', 'Contact', 'contact', '', 'index,follow', '', '<h2 style=\"text-align: center;\">Get in touch with us</h2>\r\n', NULL, 'contact', '', 0, 1, 4, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
 (3, 1, 'Mentions légales', 'Mentions légales', '', 'Mentions légales', 'mentions-legales', '', 'index,follow', '', '', NULL, 'page', '', 0, 1, 5, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
@@ -160,9 +160,9 @@ INSERT INTO `pm_page` (`id`, `lang`, `name`, `title`, `subtitle`, `title_tag`, `
 (7, 1, 'Blog', 'Blog', '', 'Blog', 'blog', '', 'index,follow', '', '', NULL, 'blog', 'article-blog', 0, 1, 3, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL),
 (7, 2, 'Blog', 'Blog', '', 'Blog', 'blog', '', 'index,follow', '', '', NULL, 'blog', 'article-blog', 0, 1, 3, INSTALL_DATE, INSTALL_DATE, 0, NULL, 0, NULL, NULL);
 
--- ============== CREATION OF THE TABLE pm_page_file =============
+-- ============== CREATION OF THE TABLE solutionsCMS_page_file =============
 
-CREATE TABLE IF NOT EXISTS pm_page_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_page_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `id_item` int NOT NULL,
@@ -175,12 +175,12 @@ CREATE TABLE IF NOT EXISTS pm_page_file (
     PRIMARY KEY(id,lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_page_file ADD CONSTRAINT page_file_fkey FOREIGN KEY (id_item, lang) REFERENCES pm_page(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
-ALTER TABLE pm_page_file ADD CONSTRAINT page_file_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_page_file ADD CONSTRAINT page_file_fkey FOREIGN KEY (id_item, lang) REFERENCES solutionsCMS_page(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_page_file ADD CONSTRAINT page_file_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
--- ================= CREATION OF THE TABLE pm_menu ===============
+-- ================= CREATION OF THE TABLE solutionsCMS_menu ===============
 
-CREATE TABLE IF NOT EXISTS pm_menu(
+CREATE TABLE IF NOT EXISTS solutionsCMS_menu(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `name` varchar(50),
@@ -196,13 +196,13 @@ CREATE TABLE IF NOT EXISTS pm_menu(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_menu ADD CONSTRAINT menu_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_menu ADD CONSTRAINT menu_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_menu
+-- Content OF THE TABLE solutionsCMS_menu
 --
 
-INSERT INTO `pm_menu` (`id`, `lang`, `name`, `title`, `id_parent`, `item_type`, `id_item`, `url`, `main`, `footer`, `checked`, `rank`) VALUES
+INSERT INTO `solutionsCMS_menu` (`id`, `lang`, `name`, `title`, `id_parent`, `item_type`, `id_item`, `url`, `main`, `footer`, `checked`, `rank`) VALUES
 (1, 1, 'Accueil', '', NULL, 'page', 1, '', 1, 0, 1, 1),
 (1, 2, 'Home', '', NULL, 'page', 1, '', 1, 0, 1, 1),
 (2, 1, 'Contact', '', NULL, 'page', 2, '', 1, 1, 1, 4),
@@ -212,16 +212,16 @@ INSERT INTO `pm_menu` (`id`, `lang`, `name`, `title`, `id_parent`, `item_type`, 
 (4, 1, 'Ma première page', '', NULL, 'page', 5, '', 1, 0, 1, 2),
 (4, 2, 'My first page', '', NULL, 'page', 5, '', 1, 0, 1, 2);
 
--- ================ CREATION OF THE TABLE pm_media ===============
+-- ================ CREATION OF THE TABLE solutionsCMS_media ===============
 
-CREATE TABLE IF NOT EXISTS pm_media(
+CREATE TABLE IF NOT EXISTS solutionsCMS_media(
     `id` int NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
--- ============== CREATION OF THE TABLE pm_media_file ============
+-- ============== CREATION OF THE TABLE solutionsCMS_media_file ============
 
-CREATE TABLE IF NOT EXISTS pm_media_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_media_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `id_item` int NOT NULL,
     `home` int DEFAULT 0,
@@ -233,11 +233,11 @@ CREATE TABLE IF NOT EXISTS pm_media_file (
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_media_file ADD CONSTRAINT media_file_fkey FOREIGN KEY (id_item) REFERENCES pm_media(id) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_media_file ADD CONSTRAINT media_file_fkey FOREIGN KEY (id_item) REFERENCES solutionsCMS_media(id) ON UPDATE NO ACTION ON DELETE CASCADE;
 
--- ================ CREATION OF THE TABLE pm_text ================
+-- ================ CREATION OF THE TABLE solutionsCMS_text ================
 
-CREATE TABLE IF NOT EXISTS pm_text(
+CREATE TABLE IF NOT EXISTS solutionsCMS_text(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `name` varchar(50),
@@ -245,13 +245,13 @@ CREATE TABLE IF NOT EXISTS pm_text(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_text ADD CONSTRAINT text_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_text ADD CONSTRAINT text_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_text
+-- Content OF THE TABLE solutionsCMS_text
 --
 
-INSERT INTO `pm_text` (`id`, `lang`, `name`, `value`) VALUES
+INSERT INTO `solutionsCMS_text` (`id`, `lang`, `name`, `value`) VALUES
 (1, 1, 'CREATION', 'Création'),
 (1, 2, 'CREATION', 'Creation'),
 (2, 1, 'MESSAGE', 'Message'),
@@ -399,9 +399,9 @@ INSERT INTO `pm_text` (`id`, `lang`, `name`, `value`) VALUES
 (73, 1, 'NEXT', 'Previous'),
 (73, 2, 'NEXT', 'Précédent');
 
--- =============== CREATION OF THE TABLE pm_widget ===============
+-- =============== CREATION OF THE TABLE solutionsCMS_widget ===============
 
-CREATE TABLE IF NOT EXISTS pm_widget(
+CREATE TABLE IF NOT EXISTS solutionsCMS_widget(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `title` varchar(250),
@@ -418,13 +418,13 @@ CREATE TABLE IF NOT EXISTS pm_widget(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_widget ADD CONSTRAINT widget_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_widget ADD CONSTRAINT widget_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_widget
+-- Content OF THE TABLE solutionsCMS_widget
 --
 
-INSERT INTO `pm_widget` (`id`, `lang`, `title`, `subtitle`, `showtitle`, `pos`, `allpages`, `pages`, `type`, `class`, `content`, `checked`, `rank`) VALUES
+INSERT INTO `solutionsCMS_widget` (`id`, `lang`, `title`, `subtitle`, `showtitle`, `pos`, `allpages`, `pages`, `type`, `class`, `content`, `checked`, `rank`) VALUES
 (1, 1, 'Qui sommes-nous ?', NULL, 1, 'footer_col_3', 1, '', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget auctor ipsum. Mauris pharetra neque a mauris commodo, at aliquam leo malesuada. Maecenas eget elit eu ligula rhoncus dapibus at non erat. In sed velit eget eros gravida consectetur varius imperdiet lectus.</p>', 1, 13),
 (1, 2, 'About us', NULL, 1, 'footer_col_3', 1, '', '', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget auctor ipsum. Mauris pharetra neque a mauris commodo, at aliquam leo malesuada. Maecenas eget elit eu ligula rhoncus dapibus at non erat. In sed velit eget eros gravida consectetur varius imperdiet lectus.</p>', 1, 13),
 (3, 1, 'Derniers articles', '', 1, 'main_before', 0, '1', 'check_list', '', '<h4><i class=\"fa-regular fa-heart\"></i> Lorem ipsum</h4><p>Sed nisl ante, gravida ut diam sed, vestibulum dictum massa. Proin suscipit dolor eget odio egestas, ac sodales erat mollis.</p><hr><h4><i class=\"fa-regular fa-gem\"></i> Lorem ipsum</h4><p>Sed nisl ante, gravida ut diam sed, vestibulum dictum massa. Proin suscipit dolor eget odio egestas, ac sodales erat mollis.</p><hr><h4><i class=\"fa-regular fa-star\"></i> Lorem ipsum</h4><p>Sed nisl ante, gravida ut diam sed, vestibulum dictum massa. Proin suscipit dolor eget odio egestas, ac sodales erat mollis.</p><hr><h4><i class=\"fa-regular fa-paper-plane\"></i> Lorem ipsum</h4><p>Sed nisl ante, gravida ut diam sed, vestibulum dictum massa. Proin suscipit dolor eget odio egestas, ac sodales erat mollis.</p>', 1, 1),
@@ -452,9 +452,9 @@ INSERT INTO `pm_widget` (`id`, `lang`, `title`, `subtitle`, `showtitle`, `pos`, 
 (15, 1, 'Banner Ad', NULL, 0, 'main_before', 0, '1', '', '', '<figure class=\"image\"><a href=\"#\"><img style=\"aspect-ratio:1320/413;\" src=\"medias/uploads/66ab91d3d587b/banner-min.png\" width=\"1320\" height=\"413\"></a></figure>', 1, 3),
 (15, 2, 'Banner Ad', NULL, 0, 'main_before', 0, '1', '', '', '<figure class=\"image\"><a href=\"#\"><img style=\"aspect-ratio:1320/413;\" src=\"medias/uploads/66ab91d3d587b/banner-min.png\" width=\"1320\" height=\"413\"></a></figure>', 1, 3);
 
--- ============= CREATION OF THE TABLE pm_widget_file ===========
+-- ============= CREATION OF THE TABLE solutionsCMS_widget_file ===========
 
-CREATE TABLE IF NOT EXISTS pm_widget_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_widget_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `id_item` int NOT NULL,
@@ -467,14 +467,14 @@ CREATE TABLE IF NOT EXISTS pm_widget_file (
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_widget_file ADD CONSTRAINT widget_file_fkey FOREIGN KEY (id_item, lang) REFERENCES pm_widget(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
-ALTER TABLE pm_widget_file ADD CONSTRAINT widget_file_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_widget_file ADD CONSTRAINT widget_file_fkey FOREIGN KEY (id_item, lang) REFERENCES solutionsCMS_widget(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_widget_file ADD CONSTRAINT widget_file_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_widget_file
+-- Content OF THE TABLE solutionsCMS_widget_file
 --
 
-INSERT INTO `pm_widget_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
+INSERT INTO `solutionsCMS_widget_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
 (1, 1, 13, 0, 1, 1, 'video.mp4', '', 'other'),
 (1, 2, 13, 0, 1, 1, 'video.mp4', '', 'other'),
 (2, 1, 10, 0, 1, 2, 'bg-parallax.jpg', '', 'image'),
@@ -482,9 +482,9 @@ INSERT INTO `pm_widget_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`
 (3, 1, 14, 0, 1, 1, 'banner.png', '', 'image'),
 (3, 2, 14, 0, 1, 1, 'banner.png', '', 'image');
 
--- ================ CREATION OF THE TABLE pm_article =============
+-- ================ CREATION OF THE TABLE solutionsCMS_article =============
 
-CREATE TABLE IF NOT EXISTS pm_article(
+CREATE TABLE IF NOT EXISTS solutionsCMS_article(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `title` varchar(250),
@@ -510,14 +510,14 @@ CREATE TABLE IF NOT EXISTS pm_article(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_article ADD CONSTRAINT article_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
-ALTER TABLE pm_article ADD CONSTRAINT article_page_fkey FOREIGN KEY (id_page, lang) REFERENCES pm_page(id, lang) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_article ADD CONSTRAINT article_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_article ADD CONSTRAINT article_page_fkey FOREIGN KEY (id_page, lang) REFERENCES solutionsCMS_page(id, lang) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_article
+-- Content OF THE TABLE solutionsCMS_article
 --
 
-INSERT INTO `pm_article` (`id`, `lang`, `title`, `subtitle`, `alias`, `short_text`, `text`, `url`, `tags`, `id_page`, `users`, `home`, `checked`, `rank`, `add_date`, `edit_date`, `publish_date`, `unpublish_date`, `comment`, `rating`, `show_langs`, `hide_langs`) VALUES
+INSERT INTO `solutionsCMS_article` (`id`, `lang`, `title`, `subtitle`, `alias`, `short_text`, `text`, `url`, `tags`, `id_page`, `users`, `home`, `checked`, `rank`, `add_date`, `edit_date`, `publish_date`, `unpublish_date`, `comment`, `rating`, `show_langs`, `hide_langs`) VALUES
 (1, 1, 'Mon premier article', '', 'mon-premier-article', '', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar. Phasellus eget est quis est faucibus condimentum. Morbi tellus turpis, posuere vel tincidunt non, varius ac ante. Suspendisse in sem neque.</p><ul><li>Brand Identity</li><li>Website Design & Development</li><li>SEO & Analytics</li></ul>', '', '', 4, '1', 1, 1, 1, INSTALL_DATE, INSTALL_DATE, NULL, NULL, 1, NULL, '', ''),
 (1, 2, 'My first article', '', 'my-first-article', '', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar. Phasellus eget est quis est faucibus condimentum. Morbi tellus turpis, posuere vel tincidunt non, varius ac ante. Suspendisse in sem neque.</p><ul><li>Brand Identity</li><li>Website Design & Development</li><li>SEO & Analytics</li></ul>', '', '', 4, '1', 1, 1, 1, INSTALL_DATE, INSTALL_DATE, NULL, NULL, 1, NULL, '', ''),
 (2, 1, 'Mon premier article', '', 'mon-premier-article', '', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar. Phasellus eget est quis est faucibus condimentum. Morbi tellus turpis, posuere vel tincidunt non, varius ac ante. Suspendisse in sem neque. Donec et faucibus justo. Nulla vitae nisl lacus. Fusce tincidunt quam nec vestibulum vestibulum. Vivamus vulputate, nunc non ullamcorper mattis, nunc orci imperdiet nulla, at laoreet ipsum nisl non leo. Aenean dapibus aliquet sem, ut lacinia magna mattis in.</p><h3>Mauris et euismod enim, eget elementum orci</h3><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempor arcu eu sapien ullamcorper sodales. Aenean eu massa in ante commodo scelerisque vitae sed sapien. Aenean eu dictum arcu. Mauris ultricies dolor eu molestie egestas.<br>Proin feugiat, nunc at pellentesque fringilla, ex purus efficitur dolor, ac pretium odio lacus id leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu ipsum viverra dolor tempus vehicula eu eu risus. Praesent rutrum dapibus odio, nec accumsan justo fermentum in. Ut quis neque a ante facilisis bibendum.</p>', '', '', 4, '1', 1, 1, 2, INSTALL_DATE, INSTALL_DATE, NULL, NULL, 1, NULL, '', ''),
@@ -527,9 +527,9 @@ INSERT INTO `pm_article` (`id`, `lang`, `title`, `subtitle`, `alias`, `short_tex
 (4, 1, 'Mon premier article', '', 'mon-premier-article', 'Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar.', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar. Phasellus eget est quis est faucibus condimentum. Morbi tellus turpis, posuere vel tincidunt non, varius ac ante. Suspendisse in sem neque. Donec et faucibus justo. Nulla vitae nisl lacus. Fusce tincidunt quam nec vestibulum vestibulum. Vivamus vulputate, nunc non ullamcorper mattis, nunc orci imperdiet nulla, at laoreet ipsum nisl non leo. Aenean dapibus aliquet sem, ut lacinia magna mattis in.</p><h3>Mauris et euismod enim, eget elementum orci</h3><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempor arcu eu sapien ullamcorper sodales. Aenean eu massa in ante commodo scelerisque vitae sed sapien. Aenean eu dictum arcu. Mauris ultricies dolor eu molestie egestas.<br>Proin feugiat, nunc at pellentesque fringilla, ex purus efficitur dolor, ac pretium odio lacus id leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu ipsum viverra dolor tempus vehicula eu eu risus. Praesent rutrum dapibus odio, nec accumsan justo fermentum in. Ut quis neque a ante facilisis bibendum.</p>', '', '', 7, '1', 1, 1, 4, INSTALL_DATE, INSTALL_DATE, NULL, NULL, 1, NULL, '', ''),
 (4, 2, 'Donec gravida eget velit eget pulvinar', '', 'donec-gravida-eget-velit-eget-pulvinar', 'Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar.', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Nullam molestie, nunc eu consequat varius, nisi metus iaculis nulla, nec ornare odio leo quis eros. Donec gravida eget velit eget pulvinar. Phasellus eget est quis est faucibus condimentum. Morbi tellus turpis, posuere vel tincidunt non, varius ac ante. Suspendisse in sem neque. Donec et faucibus justo. Nulla vitae nisl lacus. Fusce tincidunt quam nec vestibulum vestibulum. Vivamus vulputate, nunc non ullamcorper mattis, nunc orci imperdiet nulla, at laoreet ipsum nisl non leo. Aenean dapibus aliquet sem, ut lacinia magna mattis in.</p><h3>Mauris et euismod enim, eget elementum orci</h3><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempor arcu eu sapien ullamcorper sodales. Aenean eu massa in ante commodo scelerisque vitae sed sapien. Aenean eu dictum arcu. Mauris ultricies dolor eu molestie egestas.<br>Proin feugiat, nunc at pellentesque fringilla, ex purus efficitur dolor, ac pretium odio lacus id leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu ipsum viverra dolor tempus vehicula eu eu risus. Praesent rutrum dapibus odio, nec accumsan justo fermentum in. Ut quis neque a ante facilisis bibendum.</p>', '', '', 7, '1', 1, 1, 4, INSTALL_DATE, INSTALL_DATE, NULL, NULL, 1, NULL, '', '');
 
--- ============= CREATION OF THE TABLE pm_article_file ===========
+-- ============= CREATION OF THE TABLE solutionsCMS_article_file ===========
 
-CREATE TABLE IF NOT EXISTS pm_article_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_article_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `id_item` int NOT NULL,
@@ -542,14 +542,14 @@ CREATE TABLE IF NOT EXISTS pm_article_file (
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_article_file ADD CONSTRAINT article_file_fkey FOREIGN KEY (id_item, lang) REFERENCES pm_article(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
-ALTER TABLE pm_article_file ADD CONSTRAINT article_file_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_article_file ADD CONSTRAINT article_file_fkey FOREIGN KEY (id_item, lang) REFERENCES solutionsCMS_article(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_article_file ADD CONSTRAINT article_file_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_article_file
+-- Content OF THE TABLE solutionsCMS_article_file
 --
 
-INSERT INTO `pm_article_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
+INSERT INTO `solutionsCMS_article_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
 (1, 1, 1, 0, 1, 1, 'sample.jpg', '', 'image'),
 (1, 2, 1, 0, 1, 1, 'sample.jpg', '', 'image'),
 (2, 1, 2, 0, 1, 2, 'sample2.jpg', '', 'image'),
@@ -559,9 +559,9 @@ INSERT INTO `pm_article_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank
 (4, 1, 4, 0, 1, 4, 'sample4.jpg', '', 'image'),
 (4, 2, 4, 0, 1, 4, 'sample4.jpg', '', 'image');
 
--- ================ CREATION OF THE TABLE pm_comment =============
+-- ================ CREATION OF THE TABLE solutionsCMS_comment =============
 
-CREATE TABLE IF NOT EXISTS pm_comment (
+CREATE TABLE IF NOT EXISTS solutionsCMS_comment (
     `id` int NOT NULL AUTO_INCREMENT,
     `item_type` varchar(30),
     `id_item` int,
@@ -577,9 +577,9 @@ CREATE TABLE IF NOT EXISTS pm_comment (
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
--- ================= CREATION OF THE TABLE pm_tag ================
+-- ================= CREATION OF THE TABLE solutionsCMS_tag ================
 
-CREATE TABLE IF NOT EXISTS pm_tag(
+CREATE TABLE IF NOT EXISTS solutionsCMS_tag(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `value` varchar(250),
@@ -589,11 +589,11 @@ CREATE TABLE IF NOT EXISTS pm_tag(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_tag ADD CONSTRAINT tag_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_tag ADD CONSTRAINT tag_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
--- ================= CREATION OF THE TABLE pm_slide ==============
+-- ================= CREATION OF THE TABLE solutionsCMS_slide ==============
 
-CREATE TABLE IF NOT EXISTS pm_slide(
+CREATE TABLE IF NOT EXISTS solutionsCMS_slide(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `legend` text,
@@ -604,22 +604,22 @@ CREATE TABLE IF NOT EXISTS pm_slide(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_slide ADD CONSTRAINT slide_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
-ALTER TABLE pm_slide ADD CONSTRAINT slide_page_fkey FOREIGN KEY (id_page, lang) REFERENCES pm_page(id, lang) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_slide ADD CONSTRAINT slide_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_slide ADD CONSTRAINT slide_page_fkey FOREIGN KEY (id_page, lang) REFERENCES solutionsCMS_page(id, lang) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_slide
+-- Content OF THE TABLE solutionsCMS_slide
 --
 
-INSERT INTO `pm_slide` (`id`, `lang`, `legend`, `url`, `id_page`, `checked`, `rank`) VALUES
+INSERT INTO `solutionsCMS_slide` (`id`, `lang`, `legend`, `url`, `id_page`, `checked`, `rank`) VALUES
 (1, 1, '<h1>Best CMS Ever<br><small>Your Website, Your Way!</small></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce at fringilla est. In eget porta odio.<br>Sed eget ligula vitae ante iaculis tempus eget a enim. </p><p><a class=\"btn btn-primary\" href=\"#\">Explore</a></p>', '', 1, 1, 1),
 (1, 2, '<h1>Best CMS Ever<br><small>Your Website, Your Way!</small></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce at fringilla est. In eget porta odio.<br>Sed eget ligula vitae ante iaculis tempus eget a enim. </p><p><a class=\"btn btn-primary\" href=\"#\">Explore</a></p>', '', 1, 1, 1),
 (2, 1, '<h1>Best CMS Ever<br><small>Your Website, Your Way!</small></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce at fringilla est. In eget porta odio.<br>Sed eget ligula vitae ante iaculis tempus eget a enim. </p><p><a class=\"btn btn-primary\" href=\"#\">Learn more</a></p>', '', 1, 1, 2),
 (2, 2, '<h1>Best CMS Ever<br><small>Your Website, Your Way!</small></h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce at fringilla est. In eget porta odio.<br>Sed eget ligula vitae ante iaculis tempus eget a enim. </p><p><a class=\"btn btn-primary\" href=\"#\">Learn more</a></p>', '', 1, 1, 2);
 
--- ============== CREATION OF THE TABLE pm_slide_file ============
+-- ============== CREATION OF THE TABLE solutionsCMS_slide_file ============
 
-CREATE TABLE IF NOT EXISTS pm_slide_file (
+CREATE TABLE IF NOT EXISTS solutionsCMS_slide_file (
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `id_item` int NOT NULL,
@@ -632,22 +632,22 @@ CREATE TABLE IF NOT EXISTS pm_slide_file (
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_slide_file ADD CONSTRAINT slide_file_fkey FOREIGN KEY (id_item, lang) REFERENCES pm_slide(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
-ALTER TABLE pm_slide_file ADD CONSTRAINT slide_file_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_slide_file ADD CONSTRAINT slide_file_fkey FOREIGN KEY (id_item, lang) REFERENCES solutionsCMS_slide(id, lang) ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE solutionsCMS_slide_file ADD CONSTRAINT slide_file_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content OF THE TABLE pm_slide_file
+-- Content OF THE TABLE solutionsCMS_slide_file
 --
 
-INSERT INTO `pm_slide_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
+INSERT INTO `solutionsCMS_slide_file` (`id`, `lang`, `id_item`, `home`, `checked`, `rank`, `file`, `label`, `type`) VALUES
 (1, 1, 1, 0, 1, 2, 'slide1.jpg', '', 'image'),
 (1, 2, 1, 0, 1, 2, 'slide1.jpg', '', 'image'),
 (2, 1, 2, 0, 1, 3, 'slide2.jpg', '', 'image'),
 (2, 2, 2, 0, 1, 3, 'slide2.jpg', '', 'image');
 
--- =============== CREATION OF THE TABLE pm_location =============
+-- =============== CREATION OF THE TABLE solutionsCMS_location =============
 
-CREATE TABLE IF NOT EXISTS pm_location(
+CREATE TABLE IF NOT EXISTS solutionsCMS_location(
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(100),
     `address` varchar(250),
@@ -659,15 +659,15 @@ CREATE TABLE IF NOT EXISTS pm_location(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
--- Content OF THE TABLE pm_location
+-- Content OF THE TABLE solutionsCMS_location
 --
 
-INSERT INTO `pm_location` (`id`, `name`, `address`, `lat`, `lng`, `checked`, `pages`) VALUES
+INSERT INTO `solutionsCMS_location` (`id`, `name`, `address`, `lat`, `lng`, `checked`, `pages`) VALUES
 (1, 'Big Ben', 'London SW1A 0AA', '51.500729', '-0.124625', 1, '2');
 
--- ================ CREATION OF THE TABLE pm_message =============
+-- ================ CREATION OF THE TABLE solutionsCMS_message =============
 
-CREATE TABLE IF NOT EXISTS pm_message (
+CREATE TABLE IF NOT EXISTS solutionsCMS_message (
     `id` int NOT NULL AUTO_INCREMENT,
     `add_date` int,
     `edit_date` int,
@@ -680,9 +680,9 @@ CREATE TABLE IF NOT EXISTS pm_message (
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
--- =============== CREATION OF THE TABLE pm_currency =============
+-- =============== CREATION OF THE TABLE solutionsCMS_currency =============
 
-CREATE TABLE IF NOT EXISTS pm_currency(
+CREATE TABLE IF NOT EXISTS solutionsCMS_currency(
     `id` int NOT NULL AUTO_INCREMENT,
     `code` varchar(5),
     `sign` varchar(5),
@@ -692,10 +692,10 @@ CREATE TABLE IF NOT EXISTS pm_currency(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
--- Content of the table pm_currency
+-- Content of the table solutionsCMS_currency
 --
 
-INSERT INTO `pm_currency` (`id`, `code`, `sign`, `main`, `rank`) VALUES
+INSERT INTO `solutionsCMS_currency` (`id`, `code`, `sign`, `main`, `rank`) VALUES
 (1, 'USD', '$', 1, 1),
 (2, 'EUR', '€', 0, 2),
 (3, 'GBP', '£', 0, 3),
@@ -705,9 +705,9 @@ INSERT INTO `pm_currency` (`id`, `code`, `sign`, `main`, `rank`) VALUES
 (7, 'CNY', '¥', 0, 7),
 (8, 'TRY', '₺', 0, 8);
 
--- =============== CREATION OF THE TABLE pm_country ==============
+-- =============== CREATION OF THE TABLE solutionsCMS_country ==============
 
-CREATE TABLE IF NOT EXISTS pm_country(
+CREATE TABLE IF NOT EXISTS solutionsCMS_country(
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(100),
     `code` varchar(3),
@@ -715,10 +715,10 @@ CREATE TABLE IF NOT EXISTS pm_country(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
--- Content of the table pm_country
+-- Content of the table solutionsCMS_country
 --
 
-INSERT INTO pm_country VALUES
+INSERT INTO solutionsCMS_country VALUES
 (null, 'Afghanistan', 'AF'),
 (null, 'Åland', 'AX'),
 (null, 'Albania', 'AL'),
@@ -970,9 +970,9 @@ INSERT INTO pm_country VALUES
 (null, 'Zambia', 'ZM'),
 (null, 'Zimbabwe', 'ZW');
 
--- =============== CREATION OF THE TABLE pm_social ===============
+-- =============== CREATION OF THE TABLE solutionsCMS_social ===============
 
-CREATE TABLE IF NOT EXISTS pm_social(
+CREATE TABLE IF NOT EXISTS solutionsCMS_social(
     `id` int NOT NULL AUTO_INCREMENT,
     `type` varchar(50),
     `url` text,
@@ -981,9 +981,9 @@ CREATE TABLE IF NOT EXISTS pm_social(
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
--- ============ CREATION OF THE TABLE pm_email_content ===========
+-- ============ CREATION OF THE TABLE solutionsCMS_email_content ===========
 
-CREATE TABLE IF NOT EXISTS pm_email_content(
+CREATE TABLE IF NOT EXISTS solutionsCMS_email_content(
     `id` int NOT NULL AUTO_INCREMENT,
     `lang` int NOT NULL,
     `name` varchar(50),
@@ -992,19 +992,19 @@ CREATE TABLE IF NOT EXISTS pm_email_content(
     PRIMARY KEY(id, lang)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-ALTER TABLE pm_email_content ADD CONSTRAINT email_content_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE solutionsCMS_email_content ADD CONSTRAINT email_content_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Content of the table pm_email_content
+-- Content of the table solutionsCMS_email_content
 --
 
-INSERT INTO `pm_email_content` (`id`, `lang`, `name`, `subject`, `content`) VALUES
+INSERT INTO `solutionsCMS_email_content` (`id`, `lang`, `name`, `subject`, `content`) VALUES
 (1, 1, 'CONTACT', 'Contact', '<b>Nom :</b> {name}<br><b>Adresse :</b> {address}<br><b>Téléphone :</b> {phone}<br><b>E-mail :</b> {email}<br><b>Message :</b><br>{msg}'),
 (1, 2, 'CONTACT', 'Contact', '<b>Name:</b> {name}<br><b>Address:</b> {address}<br><b>Phone:</b> {phone}<br><b>E-mail:</b> {email}<br><b>Message:</b><br>{msg}');
 
--- ============== CREATION OF THE TABLE pm_popup ==============
+-- ============== CREATION OF THE TABLE solutionsCMS_popup ==============
 
-	CREATE TABLE pm_popup(
+	CREATE TABLE solutionsCMS_popup(
 		`id` int NOT NULL AUTO_INCREMENT,
 		`lang` int NOT NULL,
 		`title` varchar(250),
@@ -1018,4 +1018,4 @@ INSERT INTO `pm_email_content` (`id`, `lang`, `name`, `subject`, `content`) VALU
 		PRIMARY KEY(id, lang)
 	) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-	ALTER TABLE pm_popup ADD CONSTRAINT popup_lang_fkey FOREIGN KEY (lang) REFERENCES pm_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;
+	ALTER TABLE solutionsCMS_popup ADD CONSTRAINT popup_lang_fkey FOREIGN KEY (lang) REFERENCES solutionsCMS_lang(id) ON DELETE CASCADE ON UPDATE NO ACTION;

@@ -124,7 +124,7 @@ class Bootstrap
      */
     protected function checkSetup()
     {
-        if (($this->pms_db !== false && DbUtils::dbTableExists($this->pms_db, 'pm_%') === false) || !is_file(SYSBASE . 'config/config.php')) {
+        if (($this->pms_db !== false && DbUtils::dbTableExists($this->pms_db, 'solutionsCMS_%') === false) || !is_file(SYSBASE . 'config/config.php')) {
             return false;
         }
         return true;
@@ -160,7 +160,7 @@ class Bootstrap
     {
         // Currency settings
         if ($this->pms_db !== false) {
-            $result_currency = $this->pms_db->query('SELECT * FROM pm_currency');
+            $result_currency = $this->pms_db->query('SELECT * FROM solutionsCMS_currency');
             if ($result_currency !== false) {
                 foreach ($result_currency as $i => $row) {
                     if ($row['main'] == 1) {

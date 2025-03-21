@@ -26,7 +26,7 @@ class WidgetService
     public function loadWidgets($pageId, $lang)
     {
         $widgets = array();
-        $stmt = $this->pms_db->prepare('SELECT * FROM pm_widget WHERE (allpages = 1 OR FIND_IN_SET(:page_id, pages)) AND lang = :lang AND checked = 1 ORDER BY `rank`');
+        $stmt = $this->pms_db->prepare('SELECT * FROM solutionsCMS_widget WHERE (allpages = 1 OR FIND_IN_SET(:page_id, pages)) AND lang = :lang AND checked = 1 ORDER BY `rank`');
         $stmt->execute(['page_id' => $pageId, 'lang' => $lang]);
 
         foreach ($stmt as $row) {

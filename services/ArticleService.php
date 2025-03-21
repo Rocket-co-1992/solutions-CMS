@@ -32,7 +32,7 @@ class ArticleService
 
         $articles = [];
 
-        $stmt = $this->pms_db->query('SELECT * FROM pm_article
+        $stmt = $this->pms_db->query('SELECT * FROM solutionsCMS_article
                                     WHERE id_page IN(' . implode(',', $pageIds) . ')
                                     AND (checked = 1 OR checked = 3)
                                     AND (publish_date IS NULL OR publish_date <= ' . time() . ')
@@ -45,7 +45,7 @@ class ArticleService
         if ($stmt !== false) {
 
             $articleFileStmt = $this->pms_db->prepare('SELECT *
-                                                    FROM pm_article_file
+                                                    FROM solutionsCMS_article_file
                                                     WHERE id_item = :article_id
                                                         AND checked = 1 AND lang = :lang
                                                         AND `type` = \'image\' 
@@ -53,14 +53,14 @@ class ArticleService
                                                     ORDER BY `rank`');
         
             $articleCommentStmt = $this->pms_db->prepare('SELECT * 
-                                                    FROM pm_comment 
+                                                    FROM solutionsCMS_comment 
                                                     WHERE id_item = :article_id 
                                                         AND item_type = \'article\' 
                                                         AND checked = 1
                                                     ORDER BY add_date DESC');
 
             $articleTagsStmt = $this->pms_db->prepare('SELECT * 
-                                                    FROM pm_tag
+                                                    FROM solutionsCMS_tag
                                                     WHERE FIND_IN_SET(id, :article_tags)
                                                         AND lang = :lang
                                                     ORDER BY `rank`');

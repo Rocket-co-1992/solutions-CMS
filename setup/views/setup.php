@@ -12,7 +12,7 @@
                                 <img src="assets/images/logo-admin.png" alt="Logo" class="me-5 mt-4">
                             </div>
                             <div class="mt-4">
-                                <h1>Welcome to Pandao CMS</h1>
+                                <h1>Welcome to Solutions CMS</h1>
                                 <p>Fill fields with your information. It will take only a few seconds. You can always modify these parameters later.</p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                     </div>
                     
                     <footer class="text-center pb-3 pt-3 text-muted">
-                        &copy; Pandao CMS 2024 - All rights reserved
+                        &copy; Solutions CMS 2024 - All rights reserved
                     </footer>
                 </div>
             </form>

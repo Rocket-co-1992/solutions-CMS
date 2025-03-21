@@ -61,12 +61,12 @@ class SetupController extends Controller
             'password' => ""
         ];
 
-        if ($this->pms_db !== false && DbUtils::dbTableExists($this->pms_db, "pm_%")) {
+        if ($this->pms_db !== false && DbUtils::dbTableExists($this->pms_db, "solutionsCMS_%")) {
             $this->installed = true;
-            $_SESSION['msg_notice'][] = "It seems that Pandao CMS is already installed.<br>Remove your former tables from your database to make a fresh install.";
+            $_SESSION['msg_notice'][] = "It seems that Solutions CMS is already installed.<br>Remove your former tables from your database to make a fresh install.";
         }
         if ($this->pms_db === false && file_exists($this->config_file)) {
-            $_SESSION['msg_notice'][] = "It seems that a configuration file exists, but Pandao CMS is unable to connect to the database using settings in the file config/config.php. You can retry to make an installation here.";
+            $_SESSION['msg_notice'][] = "It seems that a configuration file exists, but Solutions CMS is unable to connect to the database using settings in the file config/config.php. You can retry to make an installation here.";
         }
 
         // Handle installation form
@@ -132,7 +132,7 @@ class SetupController extends Controller
             }
 
             if ($this->pms_db instanceof \PDO) {
-                if (DbUtils::dbTableExists($this->pms_db, "pm_%") === false) {
+                if (DbUtils::dbTableExists($this->pms_db, "solutionsCMS_%") === false) {
                     $this->db_success = $this->executeSqlFile();
                 }else
                     $this->db_success = true;
